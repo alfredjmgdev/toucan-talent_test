@@ -1,0 +1,168 @@
+paths:
+    /patient:
+        post:
+            tags:
+                - Patient
+            summary: Create a new patient
+            description: Insert a new patient into the database
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                first_name:
+                                    type: string
+                                    example: Pedro
+                                last_name:
+                                    type: string
+                                    example: Mata
+                                age:
+                                    type: integer
+                                    example: 18
+                                gender:
+                                    type: string
+                                    example: M
+            responses:
+                "200":
+                    description: Success
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Patient"
+                "404":
+                    description: Not found
+                "500":
+                    description: Internal server error
+
+    /patient/{patientId}:
+        get:
+            tags:
+                - Patient
+            summary: Get a patient information
+            description: Get a patient full information
+            parameters:
+              - in: path
+                name: patientId
+                required: true
+                schema:
+                    type: integer
+                    required: true
+                    description: Patient id
+                    example: 1
+            responses:
+                "200":
+                    description: Success
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Patient"
+                "404":
+                    description: Not found
+                "500":
+                    description: Internal server error
+        put:
+            tags:
+                - Patient
+            summary: Update a patient
+            description: Update a patient in the database
+            type: integer
+            example: 1
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                first_name:
+                                    type: string
+                                    example: Pedro
+                                last_name:
+                                    type: string
+                                    example: Mata
+                                age:
+                                    type: integer
+                                    example: 18
+                                gender:
+                                    type: string
+                                    example: M
+            responses:
+                "200":
+                    description: Success
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Patient"
+                "404":
+                    description: Not found
+                "500":
+                    description: Internal server error
+
+        delete:
+            tags:
+                - Patient
+            summary: Delete a patient
+            description: Delete a patient from the database
+            parameters:
+              - in: path
+                name: patientId
+                required: true
+                schema:
+                    type: integer
+                    description: Patient id
+                    example: 1
+            responses:
+                "200":
+                    description: Success
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Patient"
+                "404":
+                    description: Not found
+                "500":
+                    description: Internal server error
+
+    /patient/active-status/{patientId}:
+        put:
+            tags:
+                - Patient
+            summary: Update a patient status
+            description: Update a patient status in the database
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                active:
+                                    type: boolean
+                                    example: true
+            parameters:
+              - in: path
+                name: patientId
+                required: true
+                schema:
+                    type: integer
+                    description: Patient id
+                    example: 1
+            responses:
+                "200":
+                    description: Success
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Patient"
+                "404":
+                    description: Not found
+                "500":
+                    description: Internal server error
+
+components:
+    schemas:
+        Patient: "schemas.yaml#/Patient"
+        Service: "schemas.yaml#/Service"
+        Appointment: "schemas.yaml#/Appointment"

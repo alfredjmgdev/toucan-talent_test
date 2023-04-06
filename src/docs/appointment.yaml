@@ -1,0 +1,127 @@
+paths:
+  /appointment:
+    post:
+      tags:
+        - Appointment
+      summary: Create a new appointment
+      description: Insert a new appointment into the database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cancelled:
+                  type: boolean
+                  example: false
+                patientId:
+                  type: integer
+                  example: 1
+                serviceId:
+                  type: integer
+                  example: 1
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Appointment"
+        "404":
+          description: Not found
+        "500":
+          description: Internal server error
+
+  /appointment/{appointmentId}:
+    put:
+      tags:
+        - Appointment
+      summary: Update a appointment
+      description: Update a appointment in the database
+      parameters:
+        - in: path
+          name: appointmentId
+          required: true
+          schema:
+            type: integer
+            description: Appointment id
+            example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Acupuntura
+                price:
+                  type: integer
+                  example: 12
+                type:
+                  type: string
+                  example: Monthly
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Appointment"
+        "404":
+          description: Not found
+        "500":
+          description: Internal server error
+
+    delete:
+      tags:
+        - Appointment
+      summary: Delete a appointment
+      description: Delete a appointment from the database
+      parameters:
+        - in: path
+          name: appointmentId
+          required: true
+          schema:
+            type: integer
+            description: Appointment id
+            example: 1
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Appointment"
+        "404":
+          description: Not found
+        "500":
+          description: Internal server error
+
+  /appappointment/report/{patientId}:
+    get:
+      tags:
+        - Appointment
+      summary: Create a new appointment
+      description: Insert a new appointment into the database
+      parameters:
+        - in: path
+          name: patientId
+          required: true
+          schema:
+            type: integer
+            description: Appointment id
+            example: 1
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Appointment"
+        "404":
+          description: Not found
+        "500":
+          description: Internal server error

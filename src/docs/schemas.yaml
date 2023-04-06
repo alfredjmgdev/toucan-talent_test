@@ -1,0 +1,57 @@
+components:
+    schemas:
+        Patient:
+            properties:
+                id:
+                    type: integer
+                    example: 1
+                first_name:
+                    type: string
+                    example: Pedro
+                last_name:
+                    type: string
+                    example: Pedro
+                age:
+                    type: integer
+                    example: 18
+                gender:
+                    type: string
+                    example: M
+                active:
+                    type: boolean
+                    example: "true"
+        Service:
+            properties:
+                id:
+                    type: integer
+                    example: 1
+                name:
+                    type: string
+                    example: Fisioterapia
+                price:
+                    type: integer
+                    example: 1
+                type:
+                    type: string
+                    enum:
+                        - One-time
+                        - Daily
+                        - Weekly
+                        - Monthly
+        Appointment:
+            properties:
+                id:
+                    type: integer
+                    example: 1
+                date:
+                    type: string
+                    example: 23/01/2022
+                cancelled:
+                    type: boolean
+                    example: false
+                patientId:
+                    type: integer
+                    example: 1
+                serviceId:
+                    type: integer
+                    example: 1

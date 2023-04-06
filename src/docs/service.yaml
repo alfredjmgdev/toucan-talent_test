@@ -1,0 +1,101 @@
+paths:
+  /service:
+    post:
+      tags:
+        - Service
+      summary: Create a new service
+      description: Insert a new service into the database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Fisioterapia
+                price:
+                  type: integer
+                  example: 12
+                type:
+                  type: string
+                  example: One-time
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Service"
+        "404":
+          description: Not found
+        "500":
+          description: Internal server error
+
+  /service/{serviceId}:
+    put:
+      tags:
+        - Service
+      summary: Update a service
+      description: Update a service in the database
+      parameters:
+        - in: path
+          name: serviceId
+          required: true
+          schema:
+            type: integer
+            description: Patient id
+            example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Acupuntura
+                price:
+                  type: integer
+                  example: 12
+                type:
+                  type: string
+                  example: Monthly
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Service"
+        "404":
+          description: Not found
+        "500":
+          description: Internal server error
+
+    delete:
+      tags:
+        - Service
+      summary: Delete a service
+      description: Delete a service from the database
+      parameters:
+        - in: path
+          name: serviceId
+          required: true
+          schema:
+            type: integer
+            description: Patient id
+            example: 1
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Service"
+        "404":
+          description: Not found
+        "500":
+          description: Internal server error
