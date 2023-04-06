@@ -14,7 +14,6 @@ export const createAppointmentHandler = async (
   res: Response,
   next: NextFunction,
 ) => {
-  console.log('req.body', req.body);
   const { date, patientId, serviceId } = req.body;
 
   try {

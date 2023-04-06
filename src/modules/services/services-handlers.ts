@@ -7,7 +7,6 @@ export const createServiceHandler = async (
   res: Response,
   next: NextFunction,
 ) => {
-  console.log('req.body', req.body);
   const { name, price, type } = req.body;
 
   const inputCreate = {

@@ -16,4 +16,3 @@ export const reportsAppointmentSchema = yup.object().shape({
   endDate: yup.date(),
   patientId: yup.number().required()
 });
-

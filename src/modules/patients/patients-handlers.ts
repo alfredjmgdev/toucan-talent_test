@@ -35,7 +35,6 @@ export const createPatientHandler = async (
   res: Response,
   next: NextFunction,
 ) => {
-  console.log('req.body', req.body);
   const { first_name, last_name, age, type, gender, active } = req.body;
 
   const inputCreate = {
